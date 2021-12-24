@@ -24,19 +24,19 @@
                 <div class="product-info">
                     <!-- directif condition if / show -->
                     <h1>{{ product }}</h1>
-                    <p v-if="inventory>10">In Stock</p>
-                    <p v-else-if="inventory <=10 && inventory >0">almost in Stock</p>
+                    <p v-if="inStock">In Stock</p>
                     <p v-else>Out of Stock</p>
 
                     <ul>
                         <li v-for="detail in details">{{ detail }}</li>
                     </ul>
 
-                    <div class="" v-for="variant in variantes" :key="variant.id"
-                        @mouseover="updateImage(variant.image)">
-                        {{ variant.color}}
+                    <div class="color-circle" v-for="variant in variantes" :key="variant.id"
+                        @mouseover="updateImage(variant.image)" :style="{ 'backgroundColor': variant.color}">
                     </div>
-                    <button class="button" @click="addToCart">Add to Cart</button>
+                    <button class="button" @click="addToCart" :disabled="!inStock"
+                        :class="{ 'disabledButton': !inStock }">Add to
+                        Cart</button>
                 </div>
             </div>
         </div>
