@@ -2,25 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VueJs</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="vue.js"></script>
 </head>
 
 <body>
-    <h1>Formation VueJS</h1>
-
     <div id="app">
-        <pre>
-            {{ sayHello() }}
-        </pre>
+        <div class="nav-bar"></div>
+        <div class="product-dispaly">
+            <div class="product-container">
+                <div class="product-image">
+                    <!-- image goes here-->
+                    <img :src="image" />
+                </div>
 
-        <img :src="image" alt="vuejs">
+                <div class="product-info">
+                    <!-- directif condition if / show -->
+                    <h1>{{ product }}</h1>
+                    <p v-if="inventory>10">In Stock</p>
+                    <p v-else-if="inventory <=10 && inventory >0">almost in Stock</p>
+                    <p v-else>Out of Stock</p>
+
+                    <ul>
+                        <li v-for="detail in details">{{ detail }}</li>
+                    </ul>
+
+                    <div class="" v-for="variant in variantes" :key="variant.id">
+                        {{ variant.color}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="app.js"></script>
+    <script>
+        const appMounted = app.mount("#app");
+    </script>
 </body>
 
 </html>
